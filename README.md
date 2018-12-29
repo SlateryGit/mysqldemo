@@ -1,2 +1,4 @@
 # mysqldemo
-flowershop website :thymeleaf+mysql+jpa
+flowershop website : 
+    springboot:
+        thymeleaf+mysql+jpa
