@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>别人的主页</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF;width: 500px;text-align:center}
+		
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		table {
+		    background-color: #FFF;
+		    border: none;
+		    color: #565;
+		    font: 12px arial;
+		}
+		
+		table caption {
+		    font-size: 24px;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 2px solid #B3DE94;
+		}
+		
+		table, td, th {
+		    margin: 0;
+		    padding: 0;
+		    vertical-align: middle;
+		    text-align:left;
+		}
+		
+		tbody td, tbody th {
+		    background-color: #DFC;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 3px solid #FFFFFF;
+		    padding: 9px;
+		}
+		 
+		
+
+		
+	</style>
+</head>
+<body>
+<header><a>昵称为</a><a th:text="${user.nickname}"></a><a>的私密空间</a></header>
+
+ 
+	<nav>
+		<h6><a href="/user/man">今日男神</a></h6>
+		<h6><a href="/user/woman">今日女神</a></h6>
+		<h6><a href="/user/send">送礼</a></h6>
+		<h6><a href="/user/thank">回赠</a></h6>
+		<h6><a href="/user/my">我的</a></h6>
+		
+		<h6><a href="/user/logout"><font color="blue">注销</font></a></h6>
+		
+	</nav>
+
+<article>	
+<div th:if="${friendtype}">
+<table summary="userinfo" width=400px >
+	<caption>你好友的信息</caption>
+	<tr><td>姓名</td><td th:text="${user.name}"></td>
+		<td>性别</td><td th:text="${user.ismale eq 1}?'男':'女'"></td>
+		<td colspan=3>头像</td></tr>
+	<tr><td>生日</td><td th:text="${user.birthday}"></td>
+		<td>昵称</td><td th:text="${user.nickname}"></td>
+		
+		<td rowspan= 3 colspan=3><img alt="待添加" src="defaultIcon.jpg" th:src="@{${user.Icon}}"  width=125px></td>
+		</tr>
+	<tr><td>手机</td><td th:text="${user.phone}" colspan=3></td></tr>
+	<tr><td>地址</td><td th:text="${user.address}" colspan=3></td></tr>
+	<tr><td>花芽</td><td th:text="****" colspan=3></td> <td colspan=3>美照</td></tr>
+	<tr><td>花冠</td><td th:text="****" colspan=3></td> 
+		<td rowspan= 3 colspan=3><img alt="待添加" src="defaultIcon.jpg" th:src="@{${user.photo}}"  width=125px></td>
+		</tr>
+	<tr><td>id</td><td th:text="${user.id}" colspan=3></td></tr>
+	<tr ><td rowspan= 2>个性签名</td><td th:text="${user.Signature}" colspan=3 rowspan= 2></td></tr>
+	</table>
+</div>
+<div th:if="${friendtype eq false}">
+	<table width=400px>
+	<caption>这位好友并不认识你呢</caption>
+	<tr ><td>生日</td><td>个性签名</td><td>美照</td></tr>
+	<tr>
+		<td th:text="${user.birthday}"></td>
+		<td th:text="${user.Signature}"></td>
+		<td><img th:src="${user.photo}" width=80px></td>
+		</tr>
+	</table>
+	<label>试着给TA送礼物吧</label>	
+
+</div>
+
+
+</article>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>欢迎使用</title>
+<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF; align="center";width: 400px;}
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		form.wel{
+		background:#00FFFF;align="center";
+		font-size:20px;
+		position:relative;
+		left:400px;
+		top:180px;
+		padding:20px;
+		width:500px;
+		border-top-left-radius: 10px;
+    	border-top-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		}
+		body{background-size:75%;}
+		
+	</style>
+</head>
+
+<body background="/img/welcome.jpg" style="background-repeat:no-repeat background-size:100%">
+	<form class="wel">
+	<h1>用户：<a href="/user/login" style= "text-decoration:none"><font color="red">用户入口</font></a></h1>
+    <h1>管理员：<a href="/admin/menu" style= "text-decoration:none"><font color="red">管理员入口</font></a></h1>
+    </form>
+</body>
+</html>

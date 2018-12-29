@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>完善个人信息</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF; text-align:center;width: 500px;}
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		
+	</style>
+	<script th:inline="javascript">
+	 //<![CDATA[ 
+	
+	
+	  //]]>
+	</script>
+</head>
+<body>
+	<header>
+		完善头像、美照
+	</header>
+	<nav>
+			<h6>今日男神</h6>
+			<h6>今日女神</h6>
+			<h6>送礼</h6>
+			<h6>回赠</h6>
+			<h6>我的</h6>
+		</nav>
+	<article>
+		
+		<form enctype="multipart/form-data" name="IconReg" action="/admin/IconReg"  method="post" >
+			
+			头像：<br>
+			<input type="file" id="Icon" name="Icon"><br>
+			美照：<br>
+			<input type="file" id="photo" name="photo"><br>
+			<input type="submit" id="submit" value="确认无误，提交">
+			
+		</form>
+	</article>
+</body>
+</html>

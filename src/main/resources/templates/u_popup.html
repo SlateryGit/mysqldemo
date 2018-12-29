@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>充值提现页</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF;width: 500px;text-align:center}
+		
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		table {
+		    background-color: #FFF;
+		    border: none;
+		    color: #565;
+		    font: 12px arial;
+		}
+		
+		table caption {
+		    font-size: 24px;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 2px solid #B3DE94;
+		}
+		
+		table, td, th {
+		    margin: 0;
+		    padding: 0;
+		    vertical-align: middle;
+		    text-align:left;
+		}
+		
+		tbody td, tbody th {
+		    background-color: #DFC;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 3px solid #FFFFFF;
+		    padding: 9px;
+		}
+		 
+		
+
+		
+	</style>
+</head>
+<body>
+<header>买花网-</header>
+
+ 
+	<nav>
+		<h6><a href="/user/man">今日男神</a></h6>
+		<h6><a href="/user/woman">今日女神</a></h6>
+		<h6><a href="/user/send">送礼</a></h6>
+		
+		<h6><a href="/user/thank">回赠</a></h6>
+		<h6><a href="/user/index">我的首页</a></h6>
+		
+		<h6><a href="/user/logout"><font color="blue">注销</font></a></h6>
+		
+	</nav>
+
+<article>	
+<h4 th:text="${left}"></h4>
+
+<h6 th:text="${tips}"></h6>
+
+
+<form action="#" th:action="@{/user/topup}" method="post">
+	<p>充值：<input type="number" name="buyreal" min=1 step=1 value=648 max=88888>元</p>
+	<p><input type="submit" value="点击充值"></p>
+</form>
+<form action="#" th:action="@{/user/transbig}" method="post">
+	<p>转换：<input type="number" name="transbig" min=1500 step=1500 value=3000> 花芽</p>
+	<p><input type="submit" value="换成花冠"></p>
+</form>
+<form action="#" th:action="@{/user/withdraw}" method="post">
+	<p>提现：<input type="number" name="getreal" min=1 step=1 value=1>花冠</p>
+	<p><input type="submit" value="点击提现"></p>
+</form>
+
+
+
+</article>
+
+</body>
+</html>

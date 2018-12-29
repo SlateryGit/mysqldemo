@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>登陆界面</title>
+<style type="text/css">
+		header,article,footer{border: solid 0px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF; text-align:center;width: 500px;}
+		nav{padding: 10px;margin: 1px;}
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		
+	</style>
+</head>
+<body>
+	<header>
+	登陆
+	</header> 
+	<nav>
+	</nav>
+	<article>
+	
+	<div>
+            <!--/*@thymesVar id="error" type=""*/-->
+            <span id="basic-addon0">&nbsp;</span>
+            <span style="font-size: 12px;color: red" th:if="${error}" th:text="${error}" aria-describedby="basic-addon0"></span>
+        <br />
+        </div>
+        
+	<form action="/user/loginPost" method="post">
+        	手机号：<input type="text" name="account"/> <br/>
+     		   密码：<input type="password" name="password"/> 
+        <br />
+        <input type="submit" value="登录" />
+        <a  href="/user/reg">没有账号，注册</a>
+    </form>
+	
+
+</article>
+
+</body>
+</html>

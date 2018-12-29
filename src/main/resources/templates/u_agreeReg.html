@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>完善个人信息</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF; align="center";width: 500px;}
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		
+	</style>
+	<script th:inline="javascript">
+	 //<![CDATA[ 
+	function validate_form()
+	{
+		flag=true;
+		var pws=document.getElementById("pw").value;
+		var pws1=document.getElementById("rpw").value;
+		var name=document.getElementById("name").value;
+		
+		if(name=="")
+		{
+			flag=false;
+			alert("姓名不能为空");
+		}
+		if(pws==""||pws1=="")
+		{
+			flag=false;
+			alert("密码不能为空");
+		}
+		else if(pws.length<6||pws1.length<6)
+		{
+			flag=false;
+			alert("密码长度不能小于6");
+		}
+		else if(pws!=pws1)
+		{
+			 flag=false;
+			alert("两次输入的密码不一致");
+		}
+	  return flag;
+	}
+	window.onload = function (){
+		var btn = document.getElementById ('btn_sm');
+		 btn.onclick = function (){
+			alert("oc");
+			 var form=document.getElementByName('agreeReg');
+			 if(validate_form()) return form.onsubmit();
+		 }
+	}
+	
+	  //]]>
+	</script>
+</head>
+<body>
+	<header>
+		个人信息
+	</header>
+	<nav>
+			<h6>今日男神</h6>
+			<h6>今日女神</h6>
+			<h6>送礼</h6>
+			<h6>回赠</h6>
+			<h6>我的</h6>
+		</nav>
+	<article>
+			<label th:text="${tips}"></label>
+		<form name="agreeReg" action="#" th:action="@{/user/finshReg}" th:object="${userinfo}" method="post" >
+			
+			<p>手机号 :<a th:text= ${userinfo.phone} th:field=*{phone}> </a> </p>
+			*密  码:<input type="password" th:field=*{password} name="pw" id="pw"> <br>
+			*确认密码:<input type="password" name="rpw" id="rpw" th:field=*{Icon}> <br>
+			*姓  名:<input type="text" th:field=*{name} id="name"> <br>
+			昵  称:<input type="text" th:field=*{nickname}> <br>
+			*性  别:<input name="ismale" type="radio" value=1 th:field=*{ismale}>男
+				<input name="ismale" type="radio" value=0 th:field=*{ismale}>女<br>
+			*生  日:<input type="date" th:field=*{birthday}> <br>
+			地  址:<input type="text" th:field=*{address}> <br>
+			个性签名:<input type="text" th:field=*{Signature}> <br>
+			
+			
+			<input type="submit" id="submit" value="确认无误，下一步">
+			
+		</form>
+	</article>
+</body>
+</html>

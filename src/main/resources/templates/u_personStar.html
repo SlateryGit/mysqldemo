@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>别人的主页</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF;width: 500px;text-align:center}
+		
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		table {
+		    background-color: #FFF;
+		    border: none;
+		    color: #565;
+		    font: 12px arial;
+		    "max-height:500px;overflow:scroll;
+		}
+		
+		table caption {
+		    font-size: 24px;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 2px solid #B3DE94;
+		}
+		
+		table, td, th {
+		    margin: 0;
+		    padding: 0;
+		    vertical-align: middle;
+		    text-align:left;
+		    
+		}
+		
+		tbody td, tbody th {
+		    background-color: #DFC;
+		    border-bottom: 1px solid #B3DE94;
+		    border-top: 2px solid #FFFFFF;
+		    padding: 5px;
+		}
+		 
+		
+
+		
+	</style>
+</head>
+<body>
+<header th:text="${type}"></header>
+
+ 
+	<nav>
+		<div th:if="${u}">
+		<h6 th:if="${showtype eq 0}"><a href="/user/man">今日男神</a></h6>
+		<h6 th:if="${showtype eq 1}"><a href="/user/woman">今日女神</a></h6>
+		</div>
+		<h6><a href="/user/thank">回赠</a></h6>
+		<h6><a href="/user/send">送礼</a></h6>
+		<h6><a href="/user/index">我的首页</a></h6>
+		
+		<h6><a href="/user/logout"><font color="blue">注销</font></a></h6>
+		
+	</nav>
+
+<article>	
+
+
+
+<div style="max-height:450px;overflow:scroll;border:0px solid red;" th:if="${u}">
+
+	<table width=400px>
+	
+	<caption >个人信息</caption>
+	<tr ><td>生日</td><td>个性签名</td><td>美照</td></tr>
+	<tr>
+		<td th:text="${u.birthday}"></td>
+		<td th:text="${u.Signature}"></td>
+		<td><img th:src="${u.photo}" alt="该用户暂无美照" width=80px></td>
+	</tr>
+	</table>
+	
+	<table width=400px>
+	<caption >送出的礼物</caption>
+	<tbody th:each="user:${orders}">
+		<tr>
+		
+		
+			<td th:text="${user.fstype}"></td><td th:text="${user.fname}+'×'+${user.oquantity}+'个'"></td>
+			<td rowspan=3><img alt="图片未加载" th:src="${user.fpic}" width=96px></td>
+		</tr>
+		<tr>
+			
+			<td>含义</td><td th:text="${user.fmeans eq null}?'等待你去发现喔':${user.fmeans}"></td>
+		</tr>
+		
+		<tr>
+			<td>总价</td><td th:text="${user.ovalue}+' 花芽'"></td>
+			
+		</tr>
+		<tr>
+			<td>订单时间</td><td th:text="${user.ofinish_time}" colspan=2></td>
+		</tr>
+		
+	</tbody>	
+	</table>
+		<table width=400px>
+	<caption >收到的礼物</caption>
+	<tbody th:each="user:${geters}">
+		<tr>
+		
+		
+			<td th:text="${user.fstype}"></td><td th:text="${user.fname}+'×'+${user.oquantity}+'个'"></td>
+			<td rowspan=3><img alt="图片未加载" th:src="${user.fpic}" width=96px></td>
+		</tr>
+		<tr>
+			
+			<td>含义</td><td th:text="${user.fmeans eq null}?'等待你去发现喔':${user.fmeans}"></td>
+		</tr>
+		
+		<tr>
+			<td>总价</td><td th:text="${user.ovalue}+' 花芽'"></td>
+			
+		</tr>
+		<tr>
+			<td>订单时间</td><td th:text="${user.ofinish_time}" colspan=2></td>
+		</tr>
+		
+	</tbody>	
+	</table>
+</div>
+<div th:if="${u eq null}">
+<h4>今天还没人送礼</h4>
+</div >
+<label th:if="${canbuy}" th:text="${canbuy}"><font color="red"></font></label>
+
+
+</article>
+
+</body>
+</html>

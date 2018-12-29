@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>登陆界面</title>
+<style type="text/css">
+		article,footer{border: solid 0px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{font-size:30px;
+		background-color:#FFFAFA; 
+		color:#4169E1; 
+		position:relative;
+		left:600px;
+		top:50px;
+		padding:20px;
+		width:100px;
+		border-top-left-radius: 10px;
+    	border-top-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;}
+		nav{padding: 10px;margin: 1px;}
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		body{background-size:90%;}
+		form{
+		font-size:30px;
+		background-color:#FFFAFA; 
+		color:#4169E1; 
+		position:relative;
+		left:330px;
+		top:110px;
+		padding:20px;
+		width:500px;
+		border-top-left-radius: 10px;
+    	border-top-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;}
+		
+	</style>
+</head>
+<body background="/img/a_login.jpg" style="background-repeat:repeat">
+	<header>
+	登陆
+	</header> 
+	<nav>
+	</nav>
+	<article>
+	<label class="error-label"  th:text="${error}"></label>
+	<div>
+            <!--/*@thymesVar id="error" type=""*/-->
+            <span id="basic-addon0">&nbsp;</span>
+            <span style="font-size: 12px;color: red" th:if="${error}" th:text="${error}" aria-describedby="basic-addon0"></span>
+        <br />
+        </div>
+        
+	<form action="/admin/loginPost" method="post">
+              	手机号：<input type="text" name="account"/> <br/>
+     		              密码：<input type="password" name="password"/> 
+        <br />
+        <input type="submit" value="登录"  style="font-size:30px;">
+        <ul>
+	        <li><a href="/admin/reg" title="注册" style="text-decoration:none">没有账号，注册</a></li>
+	        <li><a href="/admin/menu" title="返回菜单" style="text-decoration:none;color:red">返回菜单</a></li>
+        </ul>
+    </form>
+	
+
+</article>
+
+</body>
+</html>

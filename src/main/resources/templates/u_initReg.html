@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>增加信息</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 0px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF;width: 500px;text-align:center}
+		
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		table {
+		    background-color: #FFF;
+		    border: none;
+		    color: #565;
+		    font: 12px arial;
+		}
+		
+		table caption {
+		    font-size: 24px;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 2px solid #B3DE94;
+		}
+		
+		table, td, th {
+		    margin: 0;
+		    padding: 0;
+		    vertical-align: middle;
+		    text-align:left;
+		}
+		
+		tbody td, tbody th {
+		    background-color: #DFC;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 3px solid #FFFFFF;
+		    padding: 9px;
+		}
+		 
+		
+
+		
+	</style>
+</head>
+<body>
+<header>买花网-</header>
+
+ 
+	<nav th:if=false>
+		<h6><a href="/user/man">今日男神</a></h6>
+		<h6><a href="/user/woman">今日女神</a></h6>
+		<h6><a href="/user/send">送礼</a></h6>
+		
+		<h6><a href="/user/thank">回赠</a></h6>
+		<h6><a href="/user/index">我的首页</a></h6>
+		
+		<h6><a href="/user/logout"><font color="blue">注销</font></a></h6>
+		
+	</nav>
+
+<article>	
+
+<h6 th:text="${tips}"></h6>
+
+
+<form action="#" th:action="@{/user/initReg}" method="post">
+	
+	*新密码:<input type="password" name="npw" id="pw"> <br>
+	*确认密码:<input type="password" name="rpw" id="rpw"><br>
+	*生日：<input type="date" name="birthday">		
+	<input type="submit" value="确定">
+</form>
+
+</article>
+
+</body>
+</html>

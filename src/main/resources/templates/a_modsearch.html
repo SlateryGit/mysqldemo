@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="www.thymeleaf.org">
+<head>
+	<meta charset = "utf-8"/>
+	<title>管理员用户编辑</title>
+	<style type="text/css">
+		div.pp{background-color:white;align="center";width: 1300px;}
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header.h{background-color:#FFFFFF; color:#009900; align="center";width: 1300px;}
+		nav{float: left;width: 300px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		
+	</style>
+	<script type="text/javascript">
+	//<![CDATA[ 
+	function validate_form()
+	{
+		flag=true;
+		var pws=document.getElementById("pw").value;
+		var pws1=document.getElementById("rpw").value;
+		var name=document.getElementById("name").value;
+		
+		if(name=="")
+		{
+			flag=false;
+			alert("姓名不能为空");
+		}
+		if(pws==""||pws1=="")
+		{
+			flag=false;
+			alert("密码不能为空");
+		}
+		else if(pws.length<6||pws1.length<6)
+		{
+			flag=false;
+			alert("密码长度不能小于6");
+		}
+		else if(pws!=pws1)
+		{
+			 flag=false;
+			alert("两次输入的密码不一致");
+		}
+	  return flag;
+	}
+	window.onload = function (){
+		var btn = document.getElementById ('btn_sm');
+		 btn.onclick = function (){
+			alert("oc");
+			 var form=document.getElementByName('agreeReg');
+			 if(validate_form()) return form.onsubmit();
+		 }
+	}
+	
+	  //]]>
+	</script>
+</head>
+<body background="/img/a_login.jpg" style="background-repeat:repeat">
+<!-- 管理员操作 -->
+<header class="h">查询管理员信息</header>
+
+<form method="get" action="/admin/menu">
+    	<button type="submit">返回</button>
+</form>
+	
+
+</body>
+</html>

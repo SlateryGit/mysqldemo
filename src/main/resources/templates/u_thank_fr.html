@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>回礼页</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF;width: 500px;text-align:center}
+		
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		table {
+		    background-color: #FFF;
+		    border: none;
+		    color: #565;
+		    font: 12px arial;
+		    "max-height:500px;overflow:scroll;
+		}
+		
+		table caption {
+		    font-size: 24px;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 2px solid #B3DE94;
+		}
+		
+		table, td, th {
+		    margin: 0;
+		    padding: 0;
+		    vertical-align: middle;
+		    text-align:left;
+		    
+		}
+		
+		tbody td, tbody th {
+		    background-color: #DFC;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 3px solid #FFFFFF;
+		    padding: 9px;
+		}
+		 
+		
+
+		
+	</style>
+</head>
+<body>
+<header>选择回礼</header>
+
+ 
+	<nav>
+		<h6><a href="/user/man">今日男神</a></h6>
+		<h6><a href="/user/woman">今日女神</a></h6>
+		
+		<h6><a href="/user/send">送礼</a></h6>
+		<h6><a href="/user/index">我的首页</a></h6>
+		
+		<h6><a href="/user/logout"><font color="blue">注销</font></a></h6>
+		
+	</nav>
+
+<article>	
+
+
+<div style="max-height:450px;overflow:scroll;border:0px solid red;" >
+	<table width=400px>
+	<caption th:text="${type}"></caption>
+	
+	
+	
+	<tbody th:each="user:${items}">
+		<tr>
+		<td>名称</td><td th:text="${user.name}"></td>
+			<td>价格</td><td th:text="${user.price}+' 花芽'"></td>
+			<td rowspan=2><img alt="图片未加载" th:src="${user.pic}" width=96px></td>
+	</tr>
+	<tr>
+		<td>类型</td><td th:text="${type}"></td>
+			<td>含义</td><td th:text="${user.means eq null}?'待挖掘':${user.means}"></td>
+		</tr>
+	</tbody>	
+	</table>
+	
+</div>
+
+<form action="#" th:action="@{/user/thank_finish}" method="post">
+	<p>类型：<input name="thanktype" type="radio" value=0 checked>含羞草
+		<input name="thanktype" type="radio" value=1>向阳花
+		
+	<input type="submit" value="确定回礼"></p>
+</form>
+
+</article>
+
+</body>
+</html>

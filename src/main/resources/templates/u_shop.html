@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>送礼页</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF;width: 500px;text-align:center}
+		
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		table {
+		    background-color: #FFF;
+		    border: none;
+		    color: #565;
+		    font: 12px arial;
+		    "max-height:500px;overflow:scroll;
+		}
+		
+		table caption {
+		    font-size: 24px;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 2px solid #B3DE94;
+		}
+		
+		table, td, th {
+		    margin: 0;
+		    padding: 0;
+		    vertical-align: middle;
+		    text-align:left;
+		    
+		}
+		
+		tbody td, tbody th {
+		    background-color: #DFC;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 3px solid #FFFFFF;
+		    padding: 9px;
+		}
+		 
+		
+
+		
+	</style>
+</head>
+<body>
+<header>选择送礼</header>
+
+ 
+	<nav>
+		<h6><a href="/user/man">今日男神</a></h6>
+		<h6><a href="/user/woman">今日女神</a></h6>
+		
+		<h6><a href="/user/thank">回赠</a></h6>
+		<h6><a href="/user/index">我的首页</a></h6>
+		
+		<h6><a href="/user/logout"><font color="blue">注销</font></a></h6>
+		
+	</nav>
+
+<article>	
+
+
+<div style="max-height:450px;overflow:scroll;border:0px solid red;" >
+	<table width=400px>
+	<caption th:text="${type}"></caption>
+	
+	
+	
+	<tbody th:each="user:${items}">
+		<tr>
+		<td>名称</td><td th:text="${user.name}"></td>
+			<td>价格</td><td th:text="${user.price}+' 花芽'"></td>
+			<td rowspan=2><img alt="图片未加载" th:src="${user.pic}" width=96px></td>
+	</tr>
+	<tr>
+		<td>id</td><td th:text="${user.id}"></td>
+			<td>含义</td><td th:text="${user.means eq null}?'待挖掘':${user.means}"></td>
+		</tr>
+	</tbody>	
+	</table>
+	
+</div>
+
+<form action="#" th:action="@{/user/gotoshop}" method="post">
+	<p>类型：<input name="gifttype" type="radio" value=1 th:checked="${showtype eq '1'}?'true':'false'">礼品
+		<input name="gifttype" type="radio" value=2 th:checked="${showtype eq '2'}?'true':'false'">实物鲜花
+		<input name="gifttype" type="radio" value=3 th:checked="${showtype eq '3'}?'true':'false'">虚拟鲜花
+	<input type="submit" value="点击切换"></p>
+</form>
+<label th:if="${canbuy}" th:text="${canbuy}" text-color=""><font color="red"></font></label>
+<form action="#" th:action="@{/user/confirmSend}"method="post">
+	<p>需要购买的商品id<input type="number" min=3 step=1 max=1000 name="id" value=3>
+		数量<input type="number" min=1 step=1 max=1000 name="quantity">
+	<input type="submit" value="购买"></p>
+</form>
+</article>
+
+</body>
+</html>

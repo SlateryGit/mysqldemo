@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>还礼页</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF;width: 500px;text-align:center}
+		
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		table {
+		    background-color: #FFF;
+		    border: none;
+		    color: #565;
+		    font: 12px arial;
+		    "max-height:500px;overflow:scroll;
+		}
+		
+		table caption {
+		    font-size: 24px;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 2px solid #B3DE94;
+		}
+		
+		table, td, th {
+		    margin: 0;
+		    padding: 0;
+		    vertical-align: middle;
+		    text-align:left;
+		    
+		}
+		
+		tbody td, tbody th {
+		    background-color: #DFC;
+		    border-bottom: 1px solid #B3DE94;
+		    border-top: 2px solid #FFFFFF;
+		    padding: 5px;
+		}
+		 
+		
+
+		
+	</style>
+</head>
+<body>
+<header>选择还礼</header>
+
+ 
+	<nav>
+		<h6><a href="/user/man">今日男神</a></h6>
+		<h6><a href="/user/woman">今日女神</a></h6>
+		
+		<h6><a href="/user/send">送礼</a></h6>
+		<h6><a href="/user/index">我的首页</a></h6>
+		
+		<h6><a href="/user/logout"><font color="blue">注销</font></a></h6>
+		
+	</nav>
+
+<article>	
+
+
+<div style="max-height:450px;overflow:scroll;border:0px solid red;" >
+	<table width=400px>
+	<caption th:text="${type}"></caption>
+	
+	
+	
+	<tbody th:each="user:${orders}">
+		<tr>
+		<td>订单id</td><td th:text="${user.oid}"></td>
+		
+			<td th:text="${user.fstype}"></td><td th:text="${user.fname}+'×'+${user.oquantity}+'个'"></td>
+			<td rowspan=4><img alt="图片未加载" th:src="${user.fpic}" width=96px></td>
+		</tr>
+		<tr>
+			<td>送礼人</td><td th:text="${user.sname}"></td>
+			<td>含义</td><td th:text="${user.fmeans eq null}?'等待你去发现喔':${user.fmeans}"></td>
+		</tr>
+		
+		<tr>
+			<td>总价</td><td th:text="${user.ovalue}+' 花芽'"></td>
+			<td th:text="${user.oss}"><td th:text="${user.osa}">
+		</td></tr>
+		<tr>
+			<td>订单时间</td><td th:text="${user.ofinish_time}" colspan=3></td>
+		</tr>
+		<tr>
+		<td>留言</td><td th:text="${user.memo}" colspan=4></td>
+		</tr>
+	</tbody>	
+	</table>
+	
+</div>
+<div th:if=false>
+<form action="#" th:action="@{/user/gotoshop}" method="post" >
+	<p>类型：<input name="gifttype" type="radio" value=1 th:checked="${showtype eq '1'}?'true':'false'">礼品
+		<input name="gifttype" type="radio" value=2 th:checked="${showtype eq '2'}?'true':'false'">实物鲜花
+		<input name="gifttype" type="radio" value=3 th:checked="${showtype eq '3'}?'true':'false'">虚拟鲜花
+	<input type="submit" value="点击切换"></p>
+</form>
+</div>
+<label th:if="${canbuy}" th:text="${canbuy}"><font color="red"></font></label>
+
+<form action="#" th:action="@{/user/thank_oid}"method="post">
+	<p>准备回礼的订单id<input type="number" min=1 step=1 max=1000 name="oid">
+		
+	<input type="submit" value="选择回礼方式"></p>
+</form>
+</article>
+
+</body>
+</html>

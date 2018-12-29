@@ -1,0 +1,75 @@
+<html lang="zh-CN" xmlns:th="www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>完善个人信息</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF; align="center";width: 500px;}
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		
+	</style>
+	<script type="text/javascript">
+	 //<![CDATA[ 
+	function validate_form()
+	{
+		flag=true;
+		var pws=document.getElementById("pw").value;
+		var pws1=document.getElementById("rpw").value;
+		var name=document.getElementById("name").value;
+		
+		if(name=="")
+		{
+			flag=false;
+			alert("姓名不能为空");
+		}
+		if(pws==""||pws1=="")
+		{
+			flag=false;
+			alert("密码不能为空");
+		}
+		else if(pws.length<6||pws1.length<6)
+		{
+			flag=false;
+			alert("密码长度不能小于6");
+		}
+		else if(pws!=pws1)
+		{
+			 flag=false;
+			alert("两次输入的密码不一致");
+		}
+	  return flag;
+	}
+	window.onload = function (){
+		var btn = document.getElementById ('btn_sm');
+		 btn.onclick = function (){
+			alert("oc");
+			 var form=document.getElementByName('agreeReg');
+			 if(validate_form()) return form.onsubmit();
+		 }
+	}
+	
+	  //]]>
+	</script>
+</head>
+<body>
+	<header>
+		修改信息
+	</header>
+	<article>
+		<form method="get" action="/admin/modsearch">
+		<button type ="submit">选择信息并修改</button>
+	</form>
+	<form method="get" action="/admin/menu">
+    	<button type="submit">取消并返回</button>
+	</form>
+
+	</article>
+</body>
+</html>

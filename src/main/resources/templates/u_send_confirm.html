@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>确认订单</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF;width: 500px;text-align:center}
+		
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		table {
+		    background-color: #FFF;
+		    border: none;
+		    color: #565;
+		    font: 12px arial;
+		}
+		
+		table caption {
+		    font-size: 24px;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 2px solid #B3DE94;
+		}
+		
+		table, td, th {
+		    margin: 0;
+		    padding: 0;
+		    vertical-align: middle;
+		    text-align:left;
+		}
+		
+		tbody td, tbody th {
+		    background-color: #DFC;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 3px solid #FFFFFF;
+		    padding: 9px;
+		}
+		 
+		
+
+		
+	</style>
+</head>
+<body>
+<header>最后一步</header>
+
+ 
+	<nav>
+		<h6><a href="/user/man">今日男神</a></h6>
+		<h6><a href="/user/woman">今日女神</a></h6>
+		
+		<h6><a href="/user/thank">回赠</a></h6>
+		<h6><a href="/user/index">我的首页</a></h6>
+		
+		<h6><a href="/user/logout"><font color="blue">注销</font></a></h6>
+		
+	</nav>
+
+<article>	
+<table width=400px>
+<caption>我的订单</caption>
+<tbody>
+	<thead>
+	<tr>
+	<th>收件人</th><th colspan=2 th:text="${receiver.name}"></th>
+		<th>联系方式</th><th th:text="由系统自动获取"></th></tr>
+	
+	<tr><th>地址</th><th colspan=4 th:text="由系统自动获取"></th></tr>
+
+</thead>
+	<tr><td rowspan=4 colspan=3 ><img alt="图片未加载" th:src="${item.pic}" width=175px></td>
+		<td>商品名称</td><td th:text="${item.name}"></td>
+	</tr>
+	<tr><td>数量</td><td th:text="${order.quantity}+'件 '"></td></tr>
+	<tr><td>单价</td>
+		<td th:text="${item.price}+'花芽'"></td></tr>
+	<tr><td>类型</td><td th:text="${type}"></td></tr>	
+	<tr><td>总价</td><td colspan=4 th:text="${order.value}+'花芽'" ></td></tr>
+	<tr><td>我的余额</td><td colspan=4 th:text="${mymoney}+'花芽' "></td></tr>
+</tbody>
+<tfoot>
+	<tr><td>创建时间 </td><td colspan=3 th:text="${order.submit_time}" ></td></tr>
+</table>
+
+<div th:if="${canbuy}">
+	<label th:text=${canbuy}></label>
+	<a href=/user/popup><font color="green">请充值</font></a>
+	<a href=/user/gotoshop><font color="green">重新选择</font></a>
+	<a href=/user/index><font color="red">放弃支付</font></a>
+</div>
+<div th:unless="${canbuy}">
+	
+	<form action="#" th:action="@{/user/pay}" method="post">
+	<p><input type="text" name="memo" value="可添加留言"></p>
+	<input type="submit"  value="确认购买">
+	</form>
+	
+	
+	<a href=/user/index><font color="red">放弃支付</font></a>
+	
+
+</div>
+
+
+
+
+</article>
+
+</body>
+</html>

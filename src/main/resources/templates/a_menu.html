@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="www.thymeleaf.org">
+<head>
+	<meta charset = "utf-8"/>
+	<title>管理员用户编辑</title>
+	<style type="text/css">
+		div.pp{
+		font-size:30px;
+		background-color:#DCDCDC; 
+		color:#009900; 
+		position:relative;
+		left:450px;
+		top:100px;
+		padding:20px;
+		width:500px;
+		border-top-left-radius: 10px;
+    	border-top-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		width: 300px;
+		}
+		nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header.h{
+		font-size:40px;
+		background-color:#DCDCDC; 
+		color:#8FBC8F; 
+		position:relative;
+		left:450px;
+		top:50px;
+		padding:20px;
+		width:300px;
+		border-top-left-radius: 10px;
+    	border-top-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		}
+		nav{float: left;width: 300px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}		
+		
+	</style>
+	<script type="text/javascript">
+	//<![CDATA[ 
+	function validate_form()
+	{
+		flag=true;
+		var pws=document.getElementById("pw").value;
+		var pws1=document.getElementById("rpw").value;
+		var name=document.getElementById("name").value;
+		
+		if(name=="")
+		{
+			flag=false;
+			alert("姓名不能为空");
+		}
+		if(pws==""||pws1=="")
+		{
+			flag=false;
+			alert("密码不能为空");
+		}
+		else if(pws.length<6||pws1.length<6)
+		{
+			flag=false;
+			alert("密码长度不能小于6");
+		}
+		else if(pws!=pws1)
+		{
+			 flag=false;
+			alert("两次输入的密码不一致");
+		}
+	  return flag;
+	}
+	window.onload = function (){
+		var btn = document.getElementById ('btn_sm');
+		 btn.onclick = function (){
+			alert("oc");
+			 var form=document.getElementByName('agreeReg');
+			 if(validate_form()) return form.onsubmit();
+		 }
+	}
+	
+	  //]]>
+	</script>
+</head>
+<body background="/img/a_menu.jpg" style="background-repeat:repeat">
+<!-- 管理员操作 -->
+<header class="h">可执行操作</header>
+	<div class="pp">
+		<ul>
+			<li><a href="/admin/login" title="管理员登录" style= "text-decoration:none">管理员登录</a></li>
+			<li><a href="/admin/modify" title="管理员信息修改" style= "text-decoration:none;color:#009900">管理员信息修改</a></li>
+			<li><a href="/admin/delete" title="删除管理员" style= "text-decoration:none">删除管理员</a></li>
+			<li><a href="/welcome" title="退出" style= "text-decoration:none;color:red">退出管理员系统</a></li>
+		</ul>
+	</div>
+</body>
+</html>

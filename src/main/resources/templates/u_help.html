@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+
+<meta charset="UTF-8">
+<title>帮助界面</title>
+<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 0px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF; align="center";width: 500px;}
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		
+	</style>
+	
+	
+	
+</head>
+<body>
+    <header>帮助页面</header>
+   <nav></nav>
+    <article>
+    <div th:if="${help}">
+	<label th:text=${help}></label>
+	</div>
+	<h6><a href="/user/index"><font color="blue">主页</font></a></h6>
+    <h6><a href="/user/logout"><font color="blue">注销</font></a></h6>
+    </article>
+</body>
+</html>

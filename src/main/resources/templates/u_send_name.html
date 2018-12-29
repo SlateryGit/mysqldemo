@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>送礼页</title>
+	<style type="text/css">
+		header,nav,article,footer{border: solid 1px #111;padding: 10px;margin: 1px;}
+		.container{
+		    min-height:100vh;
+		    display:flex
+		}
+		header{background:#F00; color:#FFF;width: 500px;text-align:center}
+		
+		nav{float: left;width: 60px;flex:1}
+		article{float: left;width: 406px;flex:1}
+		footer{clear: both;width: 500px;}
+		
+		table {
+		    background-color: #FFF;
+		    border: none;
+		    color: #565;
+		    font: 12px arial;
+		}
+		
+		table caption {
+		    font-size: 24px;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 2px solid #B3DE94;
+		}
+		
+		table, td, th {
+		    margin: 0;
+		    padding: 0;
+		    vertical-align: middle;
+		    text-align:left;
+		}
+		
+		tbody td, tbody th {
+		    background-color: #DFC;
+		    border-bottom: 2px solid #B3DE94;
+		    border-top: 3px solid #FFFFFF;
+		    padding: 9px;
+		}
+		 
+		
+
+		
+	</style>
+</head>
+<body>
+<header>选择一名用户</header>
+
+ 
+	<nav>
+		<h6><a href="/user/man">今日男神</a></h6>
+		<h6><a href="/user/woman">今日女神</a></h6>
+		
+		<h6><a href="/user/thank">回赠</a></h6>
+		<h6><a href="/user/index">我的首页</a></h6>
+		
+		<h6><a href="/user/logout"><font color="blue">注销</font></a></h6>
+		
+	</nav>
+
+<article>	
+<form action="#" th:action="@{/user/findUser}" method="post">
+	<p>收礼人姓名：<input type="text" name="uname"></p>
+	<p>收礼人手机：<input type="tel" name="utel"></p>
+	<p>送礼地址：<input type="text" name="uaddress"></p>
+	<p><input type="submit" value="点击查询"></p>
+</form>
+
+<div th:if="${exist}">
+	<table width=300px>
+	<caption>找到以下符合条件的用户</caption>
+	<tr ><td>生日</td><td>个性签名</td><td>美照</td></tr>
+	<tr th:each="user:${reslist}">
+		<td th:text="${user.birthday}"></td>
+		<td th:text="${user.Signature}"></td>
+		<td><img th:src="${user.photo}" width=80px></td>
+	</table>
+	<a href=/user/gotoshop>确认为该用户->前往商品页</a>
+</div>
+<div th:if="${exist eq false}">
+<label th:if=${!exist}>该用户尚未注册 ,完成送礼后将自动为其建立账号</label>
+
+	<table th:if="${vali}">
+		<tr><td>姓名</td><td th:text="${receiver_name}"></td></tr>
+		<tr><td>手机</td><td th:text="${receiver_phone}"></td></tr>
+		<tr><td>地址</td><td th:text="${receiver_address}"></td></tr>
+	</table>
+	<label th:text=${vali}></label>
+	<div th:if="${vali eq null}">
+	<a href=/user/gotoshop >确认为该用户->前往商品页</a>
+	</div>
+</div>
+
+
+
+
+</article>
+
+</body>
+</html>
